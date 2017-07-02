@@ -4,7 +4,11 @@
     "description": "This extension shows if a website is based on SiteXML architecture. Read more about SiteXML architecture: http://sitexml.info",
     "version": "1.0",
     "author": "Michael Zelensky",
-
+    "icons": {
+        "128": "sitexml_icon_128.png",
+        "48": "sitexml_icon_48.png",
+        "16": "sitexml_icon_16.png"
+    },
     "browser_action": {
         "default_icon": "sitexml_bw.png"
     },
