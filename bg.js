@@ -38,7 +38,7 @@ chrome.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
             console.log('Trying to use port; tabid: ', tabid, "host: ", host);
             port.postMessage({sitexml: "doCheck"}, function (response) {});
             port.onMessage.addListener(
-                function(request, sender, sendResponse) {
+                function(request) {
                     if (request.sitexml == "loaded") {
                         console.log(app.tabsData[tabid].host, "supports sitexml!");
                         app.tabsData[tabid].sitexmlLoaded = true;
@@ -58,7 +58,6 @@ chrome.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
 //
 chrome.tabs.onActivated.addListener(function(tab) {
     chrome.browserAction.setIcon({path:"sitexml_bw.png"});
-    console.log(app.tabsData);
     if (app.tabsData[tab.tabId]) {
         if (app.tabsData[tab.tabId].sitexmlLoaded) {
             chrome.browserAction.setIcon({path:"sitexml.png"});
@@ -66,7 +65,7 @@ chrome.tabs.onActivated.addListener(function(tab) {
     } else {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             console.log('Connection lost, reloading page. Tabid: ', tabs[0].id);
-            chrome.tabs.sendMessage(tabs[0].id, {sitexml: "reload"}, function(response) {});
+            chrome.tabs.reload(tabs[0].id);
         });
     }
 });

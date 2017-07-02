@@ -16,10 +16,9 @@
     //
     chrome.runtime.onConnect.addListener(function(port) {
         if (port.name === 'sitexml') {
-            console.log('Connected!');
             app.port = port;
             port.onMessage.addListener(
-                function(request, sender, sendResponse) {
+                function(request) {
                     if (request.sitexml == "doCheck") {
                         var a = document.createElement('a'),
                             hostname, siteXML;
@@ -45,4 +44,13 @@
             app.port.postMessage({sitexml: "not.valid"});
         }
     });
+
+    //
+    /*chrome.runtime.onMessage.addListener(
+        function(request) {
+            if (request.sitexml == "reload") {
+                console.log("Reload message received!");
+                //location.reload();
+            }
+        });*/
 })();
