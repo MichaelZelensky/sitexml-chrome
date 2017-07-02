@@ -3,7 +3,7 @@
     "name": "SiteXML detector",
     "description": "This extension shows if a website is based on SiteXML architecture. Read more about SiteXML architecture: http://sitexml.info",
     "version": "1.0",
-    "author": "Michael Zelensky"
+    "author": "Michael Zelensky",
 
     "browser_action": {
         "default_icon": "sitexml_bw.png"
